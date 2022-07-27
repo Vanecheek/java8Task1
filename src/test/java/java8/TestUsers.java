@@ -7,6 +7,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class TestUsers {
     User first = new User(24,78,"Gena","ITshnik", true);
@@ -33,7 +34,7 @@ public class TestUsers {
         List<User> res = UserCheck.getCondition(users, new UserCheck() {
             @Override
             public boolean userCondition(User user) {
-                return user.getName() == "Vanek";
+                return Objects.equals(user.getName(), "Den");
             }
         });
 
@@ -75,7 +76,7 @@ public class TestUsers {
         List<User> res = UserCheck.getCondition(users, new UserCheck() {
             @Override
             public boolean userCondition(User user) {
-                return user.getSpeciality() == "Police";
+                return Objects.equals(user.getSpeciality(), "Police");
             }
         });
 
@@ -103,12 +104,12 @@ public class TestUsers {
         List<User> res = UserCheck.getCondition(users, new UserCheck() {
             @Override
             public boolean userCondition(User user) {
-                return user.getAge() >= 18 && user.getSpeciality() == "ITshnik";
+                return user.getAge() >= 18 && Objects.equals(user.getSpeciality(), "ITshnik");
             }
         });
 
         for(User user: res){
-            Assert.assertTrue(user.getAge() >= 18 && user.getSpeciality() == "ITshnik");
+            Assert.assertTrue(user.getAge() >= 18 && Objects.equals(user.getSpeciality(), "ITshnik"));
         }
     }
 
@@ -117,12 +118,12 @@ public class TestUsers {
         List<User> res = UserCheck.getCondition(users, new UserCheck() {
             @Override
             public boolean userCondition(User user) {
-                return user.isSex() && user.getSpeciality() == "ITshnik";
+                return user.isSex() && Objects.equals(user.getSpeciality(), "ITshnik");
             }
         });
 
         for(User user: res){
-            Assert.assertTrue(user.isSex() && user.getSpeciality() == "ITshnik");
+            Assert.assertTrue(user.isSex() && Objects.equals(user.getSpeciality(), "ITshnik"));
         }
     }
 
@@ -131,12 +132,12 @@ public class TestUsers {
         List<User> res = UserCheck.getCondition(users, new UserCheck() {
             @Override
             public boolean userCondition(User user) {
-                return !user.isSex() && user.getSpeciality() == "ITshnik";
+                return !user.isSex() && Objects.equals(user.getSpeciality(), "ITshnik");
             }
         });
 
         for(User user: res){
-            Assert.assertTrue(!user.isSex() && user.getSpeciality() == "ITshnik");
+            Assert.assertTrue(!user.isSex() && Objects.equals(user.getSpeciality(), "ITshnik"));
         }
     }
 
@@ -159,12 +160,12 @@ public class TestUsers {
         List<User> res = UserCheck.getCondition(users, new UserCheck() {
             @Override
             public boolean userCondition(User user) {
-                return user.getSpeciality() == "Police" && user.getWeight() >= 100;
+                return Objects.equals(user.getSpeciality(), "Police") && user.getWeight() >= 100;
             }
         });
 
         for(User user: res){
-            Assert.assertTrue(user.getSpeciality() == "Police" && user.getWeight() >= 100);
+            Assert.assertTrue(Objects.equals(user.getSpeciality(), "Police") && user.getWeight() >= 100);
         }
     }
 }
